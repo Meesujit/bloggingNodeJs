@@ -6,8 +6,29 @@
     <title>Homepage</title>
 </head>
 
-<body>  
+<body >  
     <%- include('./partials/Nav') %>
+    
+        <div class="container grid row row-cols-3 mt-3 gap-3">
+            <% blogs.forEach(blog => { %>
+                <div class="col-6 col-md-4">
+                    <div class="card mx-8" style="width: 18rem;">
+                        <img src="<%= blog.coverImageURL %> " class="card-img-top" alt="cover image">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= blog.title %> </h5>
+                          <p class="card-text"> 
+                            <%=  blog.body.substring(0, 65) +'...' %> 
+                          </p>
+                          <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>    
+                        </div>
+                      </div>
+                </div>
+            <% }) %>
+        </div>
+  
+
+
+
     <%- include('./partials/scripts') %>
 
 </body>
