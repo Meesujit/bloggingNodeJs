@@ -9,10 +9,14 @@ const { checkForAuthenticationCookie } = require('./middleware/authentication');
 const Blog = require('./models/blog')
 const app = express()
 const PORT = process.env.PORT || 8000;
+const mongoose = require('mongoose')
+// connectToMongoDB(process.env.MONGODB_URI).then (() =>
+//  console.log('Mongodb is connected.')
+//  );
 
-connectToMongoDB(process.env.MONGODB_URI).then (() =>
- console.log('Mongodb is connected.')
- );
+mongoose
+    .connect(process.env.MONGODB_URI)
+    .then((e) => console.log("MongoDB is connected"))
 
 app.set('view engine', 'ejs')
 app.set('views', path.resolve(__dirname,'./views'))
